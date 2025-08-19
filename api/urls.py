@@ -11,7 +11,7 @@ from .views import (
     ProdutosViewSet
 )
 
-# Configurando as rotas da API REST
+# Configurando as rotas da API 
 router = routers.DefaultRouter()
 router.register(r'clientes', ClientesViewSet)
 router.register(r'documentos', DocumentosViewSet)
@@ -22,6 +22,6 @@ router.register(r'pessoas', PessoasViewSet)
 router.register(r'produtos', ProdutosViewSet)
 
 urlpatterns = [
-    path('', index, name='index'),   # Página de boas-vindas
-    path('api/', include(router.urls)),  # API REST
+    path('', index, name='index'),   
+    path('api/', include(router.urls)),  # API url
 ]
