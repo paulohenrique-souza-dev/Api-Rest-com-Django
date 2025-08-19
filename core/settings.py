@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0k+cha!g7tj=+eha-5umq)nmm)+h(6w^3n6yc@74kgyl1!y7=('
+SECRET_KEY = 'sua secret key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# instalando os apps
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bancoaprendizado',
-        'USER': 'root',
-        'PASSWORD': '460860',
+        'NAME': 'seu banco',
+        'USER': 'seu usuario',
+        'PASSWORD': 'senha',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
