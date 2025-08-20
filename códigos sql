@@ -1,0 +1,190 @@
+#Criando as Tabelas
+
+
+CREATE TABLE Clientes (
+    cliente_id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    pais VARCHAR(50),
+    cnpj_cpf VARCHAR(20)
+);
+
+CREATE TABLE Documentos (
+    documento_id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT,
+    tipo_documento VARCHAR(50),
+    data_emissao DATE,
+    numero_documento VARCHAR(50),
+    FOREIGN KEY (cliente_id) REFERENCES Clientes(cliente_id)
+);
+
+CREATE TABLE Impostos (
+    imposto_id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_imposto VARCHAR(100)
+);
+
+CREATE TABLE Documentos_Impostos (
+    doc_imposto_id INT AUTO_INCREMENT PRIMARY KEY,
+    documento_id INT,
+    imposto_id INT,
+    valor_base DECIMAL(15,2),
+    aliquota DECIMAL(5,2),
+    valor_imposto DECIMAL(15,2),
+    FOREIGN KEY (documento_id) REFERENCES Documentos(documento_id),
+    FOREIGN KEY (imposto_id) REFERENCES Impostos(imposto_id)
+);
+
+CREATE TABLE Produtos (
+    produto_id INT AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(100),
+    ncm VARCHAR(20)
+);
+
+CREATE TABLE Documentos_Produtos (
+    doc_produto_id INT AUTO_INCREMENT PRIMARY KEY,
+    documento_id INT,
+    produto_id INT,
+    quantidade INT,
+    valor_unitario DECIMAL(15,2),
+    FOREIGN KEY (documento_id) REFERENCES Documentos(documento_id),
+    FOREIGN KEY (produto_id) REFERENCES Produtos(produto_id)
+);
+
+
+
+Agora é hora de inserir os dados fictcios como a seguir:
+
+INSERT INTO Clientes (nome, pais, cnpj_cpf) VALUES
+('Alpha Import', 'Brasil', '12.345.678/0001-90'),
+('Beta Export', 'Argentina', '98.765.432/0001-12'),
+('Gamma Trading', 'Chile', '11.222.333/0001-44'),
+('Delta Comércio', 'Uruguai', '55.666.777/0001-88'),
+('Epsilon Ltda', 'Brasil', '22.333.444/0001-55'),
+('Zeta Global', 'Paraguai', '66.777.888/0001-11'),
+('Eta Comércio Exterior', 'Peru', '44.555.666/0001-22'),
+('Theta Importações', 'Brasil', '33.444.555/0001-33'),
+('Iota Trading', 'Colômbia', '77.888.999/0001-77'),
+('Kappa Ltda', 'Brasil', '88.999.000/0001-44'),
+('Lambda Comércio', 'México', '99.000.111/0001-55'),
+('Mu Trading', 'Brasil', '10.111.222/0001-66'),
+('Nu Import', 'Brasil', '23.456.789/0001-12'),
+('Xi Exportações', 'Argentina', '34.567.890/0001-23'),
+('Omicron Ltda', 'Brasil', '45.678.901/0001-34'),
+('Pi Comércio', 'Chile', '56.789.012/0001-45'),
+('Rho Trading', 'Brasil', '67.890.123/0001-56'),
+('Sigma Export', 'Uruguai', '78.901.234/0001-67'),
+('Tau Ltda', 'Brasil', '89.012.345/0001-78'),
+('Upsilon Comércio', 'Brasil', '90.123.456/0001-89');
+
+
+INSERT INTO Impostos (nome_imposto) VALUES
+('II - Imposto de Importação'),
+('IPI - Imposto sobre Produtos Industrializados'),
+('ICMS - Imposto sobre Circulação de Mercadorias e Serviços'),
+('PIS - Programa de Integração Social'),
+('COFINS - Contribuição para o Financiamento da Seguridade Social'),
+('ISS - Imposto Sobre Serviços'),
+('IOF - Imposto sobre Operações Financeiras'),
+('IRRF - Imposto de Renda Retido na Fonte'),
+('CIDE - Contribuição de Intervenção no Domínio Econômico'),
+('CSLL - Contribuição Social sobre o Lucro Líquido'),
+('INSS - Instituto Nacional do Seguro Social'),
+('FGTS - Fundo de Garantia do Tempo de Serviço'),
+('ICMS-ST - Substituição Tributária do ICMS'),
+('IPI-Importação'),
+('ICMS-Importação'),
+('Taxa Siscomex'),
+('Taxa Despacho Aduaneiro'),
+('Taxa Armazenagem'),
+('Multa Fiscal'),
+('Taxa Fiscalização Sanitária');
+
+
+INSERT INTO Produtos (descricao, ncm) VALUES
+('Celulares Smartphone', '85171200'),
+('Computadores Portáteis', '84713012'),
+('Televisores LCD', '85287211'),
+('Roupas Masculinas', '62034000'),
+('Calçados Femininos', '64041100'),
+('Automóveis', '87032100'),
+('Peças de Automóveis', '87089999'),
+('Máquinas Agrícolas', '84329000'),
+('Alimentos Congelados', '21069090'),
+('Bebidas Alcoólicas', '22041000'),
+('Produtos Químicos', '38249910'),
+('Fios e Cabos Elétricos', '85444900'),
+('Móveis de Madeira', '94036000'),
+('Brinquedos', '95030000'),
+('Medicamentos', '30049099'),
+('Óleos Essenciais', '33012900'),
+('Papel e Papelão', '48111900'),
+('Produtos Plásticos', '39269090'),
+('Ferramentas Manuais', '82055900'),
+('Equipamentos Médicos', '90183900');
+
+INSERT INTO Documentos (cliente_id, tipo_documento, data_emissao, numero_documento) VALUES
+(1, 'DI', '2025-07-01', 'DI1001'),
+(2, 'DI', '2025-07-02', 'DI1002'),
+(3, 'DSI', '2025-07-03', 'DSI1001'),
+(4, 'Conhecimento de Embarque', '2025-07-04', 'CE1001'),
+(5, 'DI', '2025-07-05', 'DI1003'),
+(6, 'DI', '2025-07-06', 'DI1004'),
+(7, 'DSI', '2025-07-07', 'DSI1002'),
+(8, 'Conhecimento de Embarque', '2025-07-08', 'CE1002'),
+(9, 'DI', '2025-07-09', 'DI1005'),
+(10, 'DI', '2025-07-10', 'DI1006'),
+(11, 'DSI', '2025-07-11', 'DSI1003'),
+(12, 'Conhecimento de Embarque', '2025-07-12', 'CE1003'),
+(13, 'DI', '2025-07-13', 'DI1007'),
+(14, 'DI', '2025-07-14', 'DI1008'),
+(15, 'DSI', '2025-07-15', 'DSI1004'),
+(16, 'Conhecimento de Embarque', '2025-07-16', 'CE1004'),
+(17, 'DI', '2025-07-17', 'DI1009'),
+(18, 'DI', '2025-07-18', 'DI1010'),
+(19, 'DSI', '2025-07-19', 'DSI1005'),
+(20, 'Conhecimento de Embarque', '2025-07-20', 'CE1005');
+
+
+INSERT INTO Documentos_Produtos (documento_id, produto_id, quantidade, valor_unitario) VALUES
+(1, 1, 50, 200.00),
+(1, 2, 30, 1500.00),
+(2, 3, 40, 800.00),
+(3, 4, 100, 30.00),
+(4, 5, 200, 80.00),
+(5, 6, 10, 35000.00),
+(6, 7, 25, 500.00),
+(7, 8, 15, 10000.00),
+(8, 9, 60, 120.00),
+(9, 10, 80, 25.00),
+(10, 11, 20, 700.00),
+(11, 12, 100, 5.00),
+(12, 13, 50, 400.00),
+(13, 14, 70, 45.00),
+(14, 15, 90, 60.00),
+(15, 16, 40, 150.00),
+(16, 17, 35, 300.00),
+(17, 18, 25, 50.00),
+(18, 19, 55, 12.00),
+(19, 20, 15, 900.00);
+
+INSERT INTO Documentos_Impostos (documento_id, imposto_id, valor_base, aliquota, valor_imposto) VALUES
+(1, 3, 10000.00, 10.00, 1000.00),
+(1, 4, 10000.00, 5.00, 500.00),
+(2, 3, 15000.00, 10.00, 1500.00),
+(3, 2, 20000.00, 18.00, 3600.00),
+(4, 5, 5000.00, 1.65, 82.50),
+(5, 3, 12000.00, 10.00, 1200.00),
+(6, 4, 8000.00, 5.00, 400.00),
+(7, 2, 18000.00, 18.00, 3240.00),
+(8, 6, 7000.00, 7.60, 532.00),
+(9, 3, 11000.00, 10.00, 1100.00),
+(10, 4, 9000.00, 5.00, 450.00),
+(11, 2, 21000.00, 18.00, 3780.00),
+(12, 5, 6000.00, 1.65, 99.00),
+(13, 3, 13000.00, 10.00, 1300.00),
+(14, 4, 14000.00, 5.00, 700.00),
+(15, 2, 19000.00, 18.00, 3420.00),
+(16, 6, 7500.00, 7.60, 570.00),
+(17, 3, 12500.00, 10.00, 1250.00),
+(18, 4, 8500.00, 5.00, 425.00),
+(19, 2, 16000.00, 18.00, 2880.00),
+(20, 5, 5500.00, 1.65, 90.75);
